@@ -196,19 +196,4 @@ Behavior:
 - Creates app-specific theme symlinks (btop, mako).
 - Ensures browser policy directories exist and are writable.
 
-## What an alternative theme manager must replicate
-Minimum viable behavior to stay compatible with Omarchy’s ecosystem:
-1. **Set the current theme directory**: `~/.config/omarchy/current/theme` should point at a valid theme tree
-   (symlink or materialized directory).
-2. **Write the current theme name**: `~/.config/omarchy/current/theme.name`.
-3. **Set/update background**: update `~/.config/omarchy/current/background` and restart `swaybg`.
-3. **Reload/restart** these components:
-   - Waybar, swayosd, hyprland (`hyprctl reload`), mako (`makoctl reload`), btop (`SIGUSR2`), terminals.
-4. **Apply app-specific themes**: GNOME, browser, VS Code/VSCodium/Cursor, Obsidian.
-5. **Run hook**: `omarchy-hook theme-set <theme-name>`.
 
-If you want feature parity with Omarchy’s built-in tooling, also implement:
-- Theme list/current behavior using `~/.config/omarchy/themes/` and `$OMARCHY_PATH/themes/`.
-- Git-based install/update/remove semantics (symlinks = default themes, real dirs = user themes).
-- Light theme detection by presence of `light.mode`.
-- Template generation via `colors.toml` and `.tpl` files into the current theme directory.
